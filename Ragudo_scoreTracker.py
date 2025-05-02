@@ -20,14 +20,11 @@ def initialize_database():
 def Submit():
     print('Hallooo')
 
-# =========== Title here ==========
-
-
 # ========== Frame1 Here==========
-
 frame1 = tk.Frame(main,bg='#e4eaeb', borderwidth=1, relief='flat')
 frame1.pack(side='left',fill='both')
 
+# =========== Title here ==========
 title = tk.Label(frame1, text='ScoreTracker', font=('Arial', 20),bg='#e4eaeb')
 title.pack(pady=(20,0))
 
