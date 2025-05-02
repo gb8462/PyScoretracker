@@ -4,7 +4,7 @@ import openpyxl, os
 main = tk.Tk()
 main.title('ScoreTracker')
 main.geometry('750x400')
-main.config(bg='#ced6d6')
+main.config(bg='#e4eaeb')
 # ========== Functions Here ==========
 
 def initialize_database():
@@ -22,28 +22,36 @@ def Submit():
 
 # =========== Title here ==========
 
-title = tk.Label(main, text='ScoreTracker', font=('Arial', 20),bg='#ced6d6')
-title.pack(pady=10)
 
-# ========== Frame Here==========
-frame = tk.Frame(main,bg='#e9f2f2')
-frame.pack(fill='both',expand=True)
+# ========== Frame1 Here==========
 
-studentName = tk.Label(frame, text='Student Name', font=('Arial',12),bg='#e9f2f2')
-studentName.pack(pady=(50,2))
+frame1 = tk.Frame(main,bg='#e4eaeb', borderwidth=1, relief='flat')
+frame1.pack(side='left',fill='both')
 
-entry = tk.Entry(frame)
-entry.pack()
+title = tk.Label(frame1, text='ScoreTracker', font=('Arial', 20),bg='#e4eaeb')
+title.pack(pady=(20,0))
 
-score = tk.Label(frame, text='Score', font=('Arial',12), bg='#e9f2f2')
-score.pack(pady=(10,2))
+studentName = tk.Label(frame1, text='Student Name', font=('Arial',12),bg='#e4eaeb')
+studentName.pack(pady=(40,2), padx=20)
 
-entry = tk.Entry(frame)
-entry.pack()
+entry = tk.Entry(frame1, width=20,font=('Arial',11))
+entry.pack(padx=20)
 
-submit = tk.Button(frame, text='submit', command=Submit)
-submit.pack(pady=20)
+score = tk.Label(frame1, text='Student Score', font=('Arial',12), bg='#e4eaeb')
+score.pack(pady=(10,2), padx=20)
+
+entry = tk.Entry(frame1, width=20, font=('Arial',11))
+entry.pack(padx=20)
+
+submit = tk.Button(frame1, text='submit', command=Submit)
+submit.pack(pady=20, padx=20)
+
+# ========== Frame2 Here==========
+frame2 = tk.Frame(main,bg='#d3dadb', borderwidth=1, relief="sunken",highlightthickness=1)
+frame2.pack(padx=10,pady=10,side='right',fill='both',expand=True)
+
 
 # ========== + ==========
+
 initialize_database()
 main.mainloop()
