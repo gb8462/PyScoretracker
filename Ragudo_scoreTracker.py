@@ -12,7 +12,7 @@ def initialize_database():
         workbook = openpyxl.Workbook()
         sheet = workbook.active
         sheet.title = "ScoreTracker"
-        sheet.append(["studentNames", "studentScores",'grades'])
+        sheet.append(["studentNames", "studentScores"])
         sheet.column_dimensions['A'].width = 20
         sheet.column_dimensions['B'].width = 20
         workbook.save("student_scores.xlsx")
