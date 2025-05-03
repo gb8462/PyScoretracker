@@ -18,7 +18,45 @@ def initialize_database():
         workbook.save("student_scores.xlsx")
 
 def Submit():
-    print('Hallooo')
+    student_name = name_entry.get()
+    student_score = score_entry.get()
+
+    if student_name.strip() == "" or student_score.strip() == "":
+        print("Please enter both name and score.")
+        return
+    try:
+        workbook = openpyxl.load_workbook("student_scores.xlsx")
+        sheet = workbook.active
+
+        sheet.append([student_name, student_score])
+        workbook.save("student_scores.xlsx")
+        print("Data saved!")
+
+        name_entry.delete(0, tk.END)
+        score_entry.delete(0, tk.END)            
+        load_data()
+    except Exception as e:
+        print("Error saving data:", e)
+
+def load_data():
+    try:
+        workbook = openpyxl.load_workbook("student_scores.xlsx")
+        sheet = workbook.active
+
+        display_box.config(state='normal')
+        display_box.delete('1.0', tk.END)  # clear old content
+
+        display_box.insert(tk.END, f"{'Name':<20} | {'Score':<10}\n")
+        display_box.insert(tk.END, "-"*32 + "\n")
+
+        for row in sheet.iter_rows(min_row=2, values_only=True):
+            name, score = row
+            display_box.insert(tk.END, f"{name:<20} | {score:<10}\n")
+
+        display_box.config(state='disabled')
+
+    except Exception as e:
+        print("Error loading data:", e)
 
 # ========== Frame1 Here==========
 frame1 = tk.Frame(main,bg='#e4eaeb', borderwidth=1, relief='flat')
@@ -47,6 +85,8 @@ submit.pack(pady=20, padx=20)
 frame2 = tk.Frame(main,bg='#d3dadb', borderwidth=1, relief="sunken",highlightthickness=1)
 frame2.pack(padx=10,pady=10,side='right',fill='both',expand=True)
 
+display_box = tk.Text(frame2, font=('Arial', 11), state='disabled', bg='#f5f5f5')
+display_box.pack(padx=10, pady=10, fill='both', expand=True)
 
 # ========== + ==========
 
